@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="GeoBus Jam - A spatial traffic puzzle game based on Ankara's road network.">
+
+    <title>GeoBus Jam | Ankara</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <h1>GeoBus <span>Jam</span></h1>
+            <p>A Spatial Traffic Puzzle Game</p>
+        </div>
+
+        <!-- GAME STATISTICS -->
+        <div class="game-stats">
+
+            <div class="stat">
+                <span>LEVEL</span>
+                <strong id="level">1</strong>
+            </div>
+
+            <div class="stat">
+                <span>TIME</span>
+                <strong id="timer">120</strong>
+            </div>
+
+            <div class="stat">
+                <span>LIVES</span>
+                <strong id="lives">♥ ♥ ♥</strong>
+            </div>
+
+            <div class="stat">
+                <span>SCORE</span>
+                <strong id="score">0</strong>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN GAME AREA -->
+    <main class="game-container">
+
+        <!-- MAP SECTION -->
+        <section class="map-section">
+
+            <div class="section-heading">
+                <h2>Ankara Road Network</h2>
+                <span id="game-status">Ready to play</span>
+            </div>
+
+            <!-- Leaflet Map -->
+            <div id="map"></div>
+
+            <p class="map-note">
+                Geographic game area: Ankara, Türkiye
+            </p>
+
+        </section>
+
+
+        <!-- GAME PANEL -->
+        <aside class="game-panel">
+
+            <!-- MISSION -->
+            <section class="panel-card">
+
+                <h2>Mission</h2>
+
+                <p>
+                    Move the buses along the road network
+                    and transport all passenger groups.
+                </p>
+
+                <div class="info-row">
+                    <span>Passenger groups</span>
+                    <strong id="passengers">0</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Moves used</span>
+                    <strong id="moves">0</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Distance</span>
+                    <strong id="distance">0 m</strong>
+                </div>
+
+            </section>
+
+
+            <!-- PASSENGER QUEUE -->
+            <section class="panel-card">
+
+                <h2>Passenger Queue</h2>
+
+                <div id="passenger-queue">
+                    <p>Passenger groups will appear here.</p>
+                </div>
+
+            </section>
+
+
+            <!-- GAME CONTROLS -->
+            <section class="panel-card">
+
+                <h2>Game Controls</h2>
+
+                <button id="start-button">
+                    Start Game
+                </button>
+
+                <button id="reset-button">
+                    Restart
+                </button>
+
+                <p id="message">
+                    Welcome to GeoBus Jam!
+                </p>
+
+            </section>
+
+        </aside>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            GeoBus Jam | GMT 458 – Web GIS | Assignment 2
+        </p>
+    </footer>
+
+
+    <!-- LEAFLET JAVASCRIPT -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- GAME MAP -->
+    <script src="js/map.js"></script>
+
+</body>
+</html>
