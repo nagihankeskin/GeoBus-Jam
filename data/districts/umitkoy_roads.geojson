@@ -1,0 +1,105 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ümitköy Kuzey Bağlantı Yolu",
+        "highway": "secondary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [32.6995, 39.9049],
+          [32.6998, 39.9044],
+          [32.7001, 39.9039],
+          [32.7003, 39.9036],
+          [32.7005, 39.9034]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dumlupınar Bulvarı (Doğu)",
+        "highway": "primary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [32.7028, 39.9028],
+          [32.7021, 39.9030],
+          [32.7014, 39.9032],
+          [32.7009, 39.9033],
+          [32.7005, 39.9034]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Doğan Taşdelen Bulvarı (Güney)",
+        "highway": "secondary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [32.7002, 39.9014],
+          [32.7003, 39.9020],
+          [32.7004, 39.9026],
+          [32.7005, 39.9030],
+          [32.7005, 39.9034]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Meksika Caddesi (Batı)",
+        "highway": "tertiary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [32.6977, 39.9037],
+          [32.6985, 39.9036],
+          [32.6993, 39.9035],
+          [32.6999, 39.9034],
+          [32.7005, 39.9034]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "2432. Cadde",
+        "highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [32.6982, 39.9024],
+          [32.6992, 39.9026],
+          [32.7004, 39.9026],
+          [32.7016, 39.9024]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "2436. Sokak",
+        "highway": "residential"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [32.6990, 39.9045],
+          [32.6998, 39.9044],
+          [32.7012, 39.9042],
+          [32.7022, 39.9038]
+        ]
+      }
+    }
+  ]
+}

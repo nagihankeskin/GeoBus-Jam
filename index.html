@@ -1,165 +1,326 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GeoBus Jam - A geographic bus puzzle game based on Ankara's real road network.">
+    <title>GeoBus Jam | Ankara Road Adventure</title>
 
-    <meta name="description"
-        content="GeoBus Jam - A spatial traffic puzzle game based on Ankara's road network.">
-
-    <title>GeoBus Jam | Ankara</title>
-
-    <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Leaflet CSS -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    >
+    <link rel="stylesheet" href="css/how-to-play.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+    <!-- WELCOME SCREEN -->
+    <main id="welcome-screen" class="welcome-screen">
+        <nav class="welcome-nav">
+            <a href="#" class="brand">
+                <span class="brand-icon">🚌</span>
+                <span>GeoBus <strong>Jam</strong></span>
+            </a>
+            <span class="edition-label">ANKARA EDITION</span>
+        </nav>
 
-        <div class="logo">
-            <h1>GeoBus <span>Jam</span></h1>
-            <p>A Spatial Traffic Puzzle Game</p>
-        </div>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    A REAL CITY. A NEW CHALLENGE.
+                </div>
 
-        <!-- GAME STATISTICS -->
-        <div class="game-stats">
+                <h1>Ready, Set,<br><span>Drive!</span></h1>
 
-            <div class="stat">
-                <span>LEVEL</span>
-                <strong id="level">1</strong>
+                <p class="hero-description">
+                    Plan your routes, match your passengers
+                    and clear the roads of Ankara.
+                    Can you get everyone on board?
+                </p>
+
+                <button id="enter-game-button" class="start-game-button">
+                    <span>START GAME</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+                <div class="hero-details">
+                    <span>✦ 6 Ankara districts</span>
+                    <span>✦ Color matching</span>
+                    <span>✦ Traffic puzzles</span>
+                </div>
             </div>
 
-            <div class="stat">
-                <span>TIME</span>
-                <strong id="timer">120</strong>
+            <div class="hero-art">
+                <div class="art-glow"></div>
+                <div class="floating-star star-one">✦</div>
+                <div class="floating-star star-two">✧</div>
+                <div class="floating-star star-three">✦</div>
+
+                <div class="road-art">
+                    <div class="road-line"></div>
+
+                    <div class="cartoon-bus yellow-bus">
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-front"></div>
+                        <span class="wheel wheel-left"></span>
+                        <span class="wheel wheel-right"></span>
+                    </div>
+
+                    <div class="cartoon-bus red-bus">
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-front"></div>
+                        <span class="wheel wheel-left"></span>
+                        <span class="wheel wheel-right"></span>
+                    </div>
+
+                    <div class="cartoon-bus blue-bus">
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-front"></div>
+                        <span class="wheel wheel-left"></span>
+                        <span class="wheel wheel-right"></span>
+                    </div>
+
+                    <div class="cartoon-bus green-bus">
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-window"></div>
+                        <div class="bus-front"></div>
+                        <span class="wheel wheel-left"></span>
+                        <span class="wheel wheel-right"></span>
+                    </div>
+                </div>
+
+                <div class="art-caption">
+                    <span class="caption-icon">📍</span>
+                    <span>Explore Ankara, one road at a time</span>
+                </div>
             </div>
-
-            <div class="stat">
-                <span>LIVES</span>
-                <strong id="lives">♥ ♥ ♥</strong>
-            </div>
-
-            <div class="stat">
-                <span>SCORE</span>
-                <strong id="score">0</strong>
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- MAIN GAME AREA -->
-    <main class="game-container">
-
-        <!-- MAP SECTION -->
-        <section class="map-section">
-
-            <div class="section-heading">
-                <h2>Ankara Road Network</h2>
-                <span id="game-status">Ready to play</span>
-            </div>
-
-            <!-- Leaflet Map -->
-            <div id="map"></div>
-
-            <p class="map-note">
-                Geographic game area: Ankara, Türkiye
-            </p>
-
         </section>
 
-
-        <!-- GAME PANEL -->
-        <aside class="game-panel">
-
-            <!-- MISSION -->
-            <section class="panel-card">
-
-                <h2>Mission</h2>
-
-                <p>
-                    Move the buses along the road network
-                    and transport all passenger groups.
-                </p>
-
-                <div class="info-row">
-                    <span>Passenger groups</span>
-                    <strong id="passengers">0</strong>
+        <!-- DISTRICTS -->
+        <section class="district-section">
+            <div class="district-heading">
+                <div>
+                    <span class="section-eyebrow">YOUR JOURNEY</span>
+                    <h2>Six districts. Six challenges.</h2>
+                    <p>Start your adventure in Ankara and unlock every district.</p>
                 </div>
+                <span class="district-count">01 — 06</span>
+            </div>
 
-                <div class="info-row">
-                    <span>Moves used</span>
-                    <strong id="moves">0</strong>
-                </div>
+            <div class="district-grid">
+                <article class="district-card">
+                    <span class="district-number">01</span>
+                    <div class="district-info">
+                        <h3>Beytepe</h3>
+                        <span class="difficulty easy">EASY</span>
+                    </div>
+                    <span class="district-symbol">🌿</span>
+                </article>
 
-                <div class="info-row">
-                    <span>Distance</span>
-                    <strong id="distance">0 m</strong>
-                </div>
+                <article class="district-card">
+                    <span class="district-number">02</span>
+                    <div class="district-info">
+                        <h3>Ümitköy</h3>
+                        <span class="difficulty easy">EASY – MEDIUM</span>
+                    </div>
+                    <span class="district-symbol">🏘️</span>
+                </article>
 
-            </section>
+                <article class="district-card">
+                    <span class="district-number">03</span>
+                    <div class="district-info">
+                        <h3>Söğütözü</h3>
+                        <span class="difficulty medium">MEDIUM</span>
+                    </div>
+                    <span class="district-symbol">🏙️</span>
+                </article>
 
+                <article class="district-card">
+                    <span class="district-number">04</span>
+                    <div class="district-info">
+                        <h3>Eryaman</h3>
+                        <span class="difficulty medium">MEDIUM – HARD</span>
+                    </div>
+                    <span class="district-symbol">🌳</span>
+                </article>
 
-            <!-- PASSENGER QUEUE -->
-            <section class="panel-card">
+                <article class="district-card">
+                    <span class="district-number">05</span>
+                    <div class="district-info">
+                        <h3>Kızılay</h3>
+                        <span class="difficulty hard">HARD</span>
+                    </div>
+                    <span class="district-symbol">🚦</span>
+                </article>
 
-                <h2>Passenger Queue</h2>
+                <article class="district-card">
+                    <span class="district-number">06</span>
+                    <div class="district-info">
+                        <h3>Ulus</h3>
+                        <span class="difficulty expert">EXPERT</span>
+                    </div>
+                    <span class="district-symbol">🏛️</span>
+                </article>
+            </div>
+        </section>
 
-                <div id="passenger-queue">
-                    <p>Passenger groups will appear here.</p>
-                </div>
-
-            </section>
-
-
-            <!-- GAME CONTROLS -->
-            <section class="panel-card">
-
-                <h2>Game Controls</h2>
-
-                <button id="start-button">
-                    Start Game
-                </button>
-
-                <button id="reset-button">
-                    Restart
-                </button>
-
-                <p id="message">
-                    Welcome to GeoBus Jam!
-                </p>
-
-            </section>
-
-        </aside>
-
+        <footer class="welcome-footer">
+            <span>GeoBus Jam</span>
+            <span>GMT 458 – Web GIS | Assignment 2</span>
+            <span>Made for curious minds ✦</span>
+        </footer>
     </main>
 
+    <!-- HOW TO PLAY MODAL -->
+    <div id="how-to-play-modal" class="modal-overlay" hidden>
+        <section class="how-to-play-card" role="dialog" aria-modal="true" aria-labelledby="how-to-play-title">
+            <button id="close-modal-button" class="modal-close" aria-label="Close instructions">×</button>
+            <div class="modal-icon">🚌</div>
+            <span class="modal-eyebrow">YOUR ANKARA ADVENTURE STARTS HERE</span>
+            <h2 id="how-to-play-title">How to Play?</h2>
+            <p class="modal-intro">
+                Your mission is to transport every passenger safely.
+                Plan carefully and keep the roads clear!
+            </p>
+            <p class="mission-text">
+                Choose your buses and send them along their predefined routes.
+                Match each bus with passengers of the same color and make sure
+                there are enough seats for the whole passenger group.
+                Plan the order carefully, avoid traffic and transport all
+                passengers to complete the level and unlock the next district.
+                You have 3 shared lives for your entire journey!
+            </p>
+            <div class="modal-stats">
+                <div><span class="modal-stat-icon">❤️</span><strong>3 Lives</strong></div>
+                <div><span class="modal-stat-icon">🚌</span><strong>10+ Buses</strong></div>
+                <div><span class="modal-stat-icon">📍</span><strong>6 Districts</strong></div>
+            </div>
+            <button id="lets-play-button" class="lets-play-button">LET'S PLAY <span>→</span></button>
+            <p class="modal-footer-note">Complete each district to unlock the next challenge.</p>
+        </section>
+    </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>
-            GeoBus Jam | GMT 458 – Web GIS | Assignment 2
-        </p>
-    </footer>
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="game-screen" hidden>
+        <header class="game-topbar">
+            <div class="game-brand">
+                <span>🚌</span>
+                <div>
+                    <h1>GeoBus <strong>Jam</strong></h1>
+                    <p>ANKARA ROAD ADVENTURE</p>
+                </div>
+            </div>
 
+            <div class="game-stats">
+                <div class="stat"><span>LEVEL</span><strong id="level">1 / 6</strong></div>
+                <div class="stat"><span>TIME</span><strong id="timer">120</strong></div>
+                <div class="stat"><span>LIVES</span><strong id="lives">♥ ♥ ♥</strong></div>
+                <div class="stat"><span>SCORE</span><strong id="score">0</strong></div>
+            </div>
+        </header>
 
-    <!-- LEAFLET JAVASCRIPT -->
+        <main class="game-map-wrapper">
+            <div id="map"></div>
+
+            <div class="map-title-chip">
+                <span class="map-live-dot"></span>
+                <span id="current-district-title">Level 1 – Beytepe</span>
+            </div>
+
+            <div id="map-start-overlay" class="map-start-overlay">
+                <div class="map-start-card">
+                    <span class="map-start-icon">🚌</span>
+                    <p class="map-start-kicker">LEVEL 01</p>
+                    <h2>BEYTEPE</h2>
+                    <p>Ready to clear the roads?</p>
+                    <button id="map-start-button">START GAME <span>→</span></button>
+                </div>
+            </div>
+
+            <div class="map-bottom-info">
+                <span id="game-status">Ready to play</span>
+                <span id="game-message">Plan your first move!</span>
+            </div>
+        </main>
+
+        <div class="game-footer">
+            <span>GeoBus Jam</span>
+            <span>GMT 458 – Web GIS | Assignment 2</span>
+            <span>📍 Ankara, Türkiye</span>
+        </div>
+    </div>
+
+    <!-- LIBRARIES -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
-    <!-- GAME MAP -->
+    <!-- GAME SCRIPTS -->
     <script src="js/map.js"></script>
+    <script src="js/levels/level2_umitkoy.js"></script>
+    <script src="js/levels/level3_sogutozu.js"></script>
+    <script src="js/levels/level4_eryaman.js"></script>
+    <script src="js/levels/level5_kizilay.js"></script>
+    <script src="js/levels/level6_ulus.js"></script>
+    <script src="js/game.js"></script>
 
+    <!-- SCREEN NAVIGATION -->
+    <script>
+        const welcomeScreen = document.getElementById("welcome-screen");
+        const howToPlayModal = document.getElementById("how-to-play-modal");
+        const gameScreen = document.getElementById("game-screen");
+
+        const enterGameButton = document.getElementById("enter-game-button");
+        const closeModalButton = document.getElementById("close-modal-button");
+        const letsPlayButton = document.getElementById("lets-play-button");
+        const mapStartButton = document.getElementById("map-start-button");
+        const mapStartOverlay = document.getElementById("map-start-overlay");
+
+        function openInstructions() { howToPlayModal.hidden = false; }
+        function closeInstructions() { howToPlayModal.hidden = true; }
+
+        function openGameScreen() {
+            howToPlayModal.hidden = true;
+            welcomeScreen.hidden = true;
+            gameScreen.hidden = false;
+
+            setTimeout(() => {
+                if (window.gameMap) {
+                    window.gameMap.invalidateSize();
+                    if (typeof window.showBeytepeOverviewThenParking === "function") {
+                        window.showBeytepeOverviewThenParking();
+                    }
+                }
+            }, 300);
+        }
+
+        function startGameFromMap() {
+            mapStartOverlay.classList.add("is-hidden");
+            if (window.GeoBusGame && typeof window.GeoBusGame.startGame === "function") {
+                window.GeoBusGame.startGame();
+            }
+            const status = document.getElementById("game-status");
+            if (status) status.textContent = "Game in progress";
+        }
+
+        enterGameButton.addEventListener("click", openInstructions);
+        closeModalButton.addEventListener("click", closeInstructions);
+        letsPlayButton.addEventListener("click", openGameScreen);
+        mapStartButton.addEventListener("click", startGameFromMap);
+
+        howToPlayModal.addEventListener("click", (event) => {
+            if (event.target === howToPlayModal) closeInstructions();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !howToPlayModal.hidden) closeInstructions();
+        });
+    </script>
 </body>
 </html>
