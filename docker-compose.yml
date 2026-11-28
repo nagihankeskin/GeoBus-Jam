@@ -1,0 +1,7 @@
+services:
+  geobus-jam:
+    build: .
+    container_name: geobus-jam-app
+    ports:
+      - "8080:80"
+    restart: unless-stopped
